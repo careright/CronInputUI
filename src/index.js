@@ -1,4 +1,7 @@
-import { CronFields } from "./nodes/CronFields";
-import { CronExpresionInput } from "./nodes/CronExpresionInput";
-customElements.define("cron-fields", CronFields);
-customElements.define("cron-expression-input", CronExpresionInput);
+import { CronFields } from './nodes/CronFields';
+import { CronExpressionInput } from './nodes/CronExpressionInput';
+
+import './index.css';
+
+customElements.define('cron-fields', CronFields);
+customElements.define('cron-expression-input', CronExpressionInput);

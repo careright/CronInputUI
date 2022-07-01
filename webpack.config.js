@@ -1,51 +1,100 @@
 const path = require('path');
+const fs = require('fs');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { compilation } = require('webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
-module.exports = {
- mode: 'development',
-  entry: {
-    app: './src/index.js'
-  },
+var libraryName = require('./package.json').name;
+
+var entryPoints = {
+  [libraryName]: './src/index.js',
+  [libraryName + '.min']: './src/index.js',
+};
+
+var localeEntryPoints = {};
+let localePath = path.resolve('src', 'i18n', 'locales');
+for (let locale of fs.readdirSync(localePath)) {
+  const code = path.basename(locale, path.extname(locale));
+  localeEntryPoints[`locales/${code}`] = path.resolve(localePath, locale);
+  localeEntryPoints[`dist/locales/${code}`] = path.resolve(localePath, locale);
+}
+
+module.exports = [{
+  mode: process.env.NODE_ENV || 'development',
+  entry: entryPoints,
   output: {
-    filename: 'cron-expression-input.js',
-    path: __dirname + '/dist'
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].js',
+    library: libraryName,
+    libraryTarget: 'umd',
+    umdNamedDefine: true,
+    globalObject: 'globalThis',
   },
   module: {
-    rules: [ 
+    rules: [
       {
-        test: /\.m?js$/,
-        exclude: /(node_modules )/,
+        test: /\.css$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          {
+            loader: 'css-loader',
+          },
+        ],
+      },
+      {
+        test: /\.js$/,
+        exclude: /(node_modules)/,
         use: {
-          loader: 'babel-loader'
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+          },
         }
-      }
-    ]
+      },
+      {
+        test: /\.js$/,
+        enforce: 'pre',
+        use: {
+          loader: 'source-map-loader',
+        },
+      },
+    ],
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        include: /\.min\.js$/,
+        extractComments: false,
+      }),
+    ],
+  },
+  performance: {
+    hints: false,
   },
   plugins: [
     new HtmlWebpackPlugin({
       filename: './index.html',
-      templateContent:
-`<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sample Page</title>
-    <link rel="stylesheet" href="../src/index.css" />
-    <script src="src/cultures/langs/en-US.js"></script>
-  </head>
-  <body>
-    <form>
-      <cron-expression-input
-        height="34px" width="250px" color="d58512"
-        required="false" hotValidate="true"
-        value="* * * * *"
-      ></cron-expression-input>
-      <input type="submit" value="Send Form" style="margin-top: 20px;" />
-    </form>
-  </body>
-</html>`
-    })
-  ]
-};
+      template: './src/index.html',
+      chunks: [libraryName],
+    }),
+    new MiniCssExtractPlugin({
+      filename: './cron-expression-input.css',
+    }),
+  ],
+},
+{
+  mode: 'production',
+  entry: localeEntryPoints,
+  output: {
+    path: __dirname,
+    // path: path.resolve(__dirname, 'dist'),
+    filename: '[name].js',
+    library: 'inputLang',
+    libraryTarget: 'var',
+    umdNamedDefine: true,
+    globalObject: 'globalThis',
+  },
+}];

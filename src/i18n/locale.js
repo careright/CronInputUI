@@ -1,0 +1,38 @@
+import inputLang from './locales/en';
+
+const cronstrueLocales = [
+    'af',
+    'be',
+    'ca',
+    'cs',
+    'da',
+    'de',
+    'en',
+    'es',
+    'fa',
+    'fi',
+    'fr',
+    'he',
+    'hu',
+    'id',
+    'it',
+    'ja',
+    'ko',
+    'nb',
+    'nl',
+    'pl',
+    'pt_BR',
+    'pt_PT',
+    'ro',
+    'ru',
+    'sk',
+    'sl',
+    'sv',
+    'sw',
+    'tr',
+    'uk',
+    'zh_CN',
+    'zh_TW',
+];
+
+export { inputLang as lang, cronstrueLocales };
