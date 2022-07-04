@@ -16,15 +16,19 @@ export class CronExpressionInput extends CronComponent {
     }
 
     connectedCallback() {
-        this.name = this.getAttribute('name');
+        this.name = this.getAttribute('name') || 'cron';
         this.width = this.getAttribute('width') || '234px';
         this.height = this.getAttribute('height') || '34px';
         this.value = this.getAttribute('value') || '* * * * *';
         this.required = this.getAttribute('required') !== null;
         this.hotValidate = this.getAttribute('hotValidate') !== null;
-        this.colorMain = this.getAttribute('color') || '#d58512';
-        this.colorMain = '#' + this.colorMain.replace('#', '');
+        this.color = this.getAttribute('color') || '#d58512';
+        this.colorMain = '#' + this.color.replace('#', '');
         this.colorSecond = this.increaseBrightness(this.colorMain, 30);
+        this.id = this.name + '_' + Math.random().toString(16).substr(2);
+
+        // Force attribute without hashtag for specific CSS
+        this.setAttribute('id', this.id);
 
         var cssTemplate = CssTemplateGenerator(this);
 
