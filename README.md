@@ -1,17 +1,32 @@
-<h1 align="center">Cron Expression Input</h1>
+<h1 align="center" style="font-size: 50px;">Welcome to Cron Input UI library 👋</h1>
 
-## Description
+## ✨ Description
 
-<strong>Cron Expression UI</strong>: Input component to generate cron expressions easily and intuitively, as in [crontab.guru](https://crontab.guru/)
+**Cron Input UI**: Input component to generate cron expressions easily and intuitively, as in [crontab.guru](https://crontab.guru/).
 
-### Previews
 
-<div>
-  <img src="https://i.ibb.co/xL2pHG9/cron-expression-input-1-0-2.png" alt="cron-expression-input" border="0">
-  <img src="https://i.ibb.co/nD7CK4W/cron-expression-input-modal-1-0-2.png" alt="cron-expression-input-modal" border="0">
-</div>
+### 📸 Previews
 
-## Installation
+Input look (customizable, multiple)
+
+![](images/input.png)
+
+Modal look
+
+![](images/modal.png)
+
+Synced expression with the input & real time human text
+
+![](images/expression.png)
+
+Warning messages
+
+![](images/invalid.png)
+![](images/missing.png)
+
+Locales support (see [Languages available](#languages))
+
+## 📥 Installation
 
 Cron Expression Input is exported as an [UMD](https://github.com/umdjs/umd) module so it will work in an [AMD](https://github.com/amdjs/amdjs-api/wiki/AMD), [CommonJS](https://wiki.commonjs.org/wiki/CommonJS) or browser global context.
 
@@ -130,10 +145,10 @@ You can pass various attributes to the component to modify its behavior, Example
 |Name|Type|Default Value|Description|
 |:--:|:--:|:-----------:|:----------|
 |**`name`**|`{String}`|`cron`|The name that the form variable|
-|**`width`**|`{String}`|`100%`|The width of the component input|
+|**`width`**|`{String}`|`234px`|The width of the component input|
 |**`height`**|`{String}`|`34px`|The height of the component input|
-|**`color`**|`{String}`|`#d58512`|The main color that the component elements will take, (hexadecimal recommended)|
 |**`value`**|`{String}`|`* * * * *`|Allow to set a default value on the component|
+|**`color`**|`{String}`|`#d58512`|The main color that the component elements will take, (hexadecimal recommended)|
 |**`required`**|`{Boolean}`|`false`|Allow component to be empty, if set, the form will not validate when empty|
 |**`hotValidate`**|`{Boolean}`|`false`|Enable cron validation while editing it, if not set, it will only be validated when the submit event is performed within a form or by clicking on the save button|
 
