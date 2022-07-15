@@ -81,7 +81,7 @@ module.exports = [{
       chunks: [libraryName],
     }),
     new MiniCssExtractPlugin({
-      filename: './cron-expression-input.css',
+      filename: './cron-input-ui.css',
     }),
   ],
 },

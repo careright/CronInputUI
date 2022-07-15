@@ -1,8 +1,8 @@
 {
-  "name": "cron-expression-input",
+  "name": "cron-input-ui",
   "version": "2.0.0",
-  "description": "Cron UI: input component to generate cron expressions easily and intuitively",
-  "main": "lib/cron-expression-input.min.js",
+  "description": "Input component to generate cron expressions easily and intuitively",
+  "main": "lib/cron-input-ui.min.js",
   "files": [
     "dist/*",
     "dist/locales/*"
@@ -13,14 +13,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JossyDevers/cron-expression-input.git"
+    "url": "git+https://github.com/QuentiumYT/CronInputUI.git"
   },
-  "author": "Jossy Devers <jossydevers@gmail.com> (https://github.com/JossyDevers)",
+  "author": "Jossy Devers <jossydevers@gmail.com>",
+  "contributors": [
+    "Quentin Lienhardt <pro@quentium.fr>"
+  ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/JossyDevers/cron-expression-input/issues"
+    "url": "https://github.com/QuentiumYT/CronInputUI/issues"
   },
-  "homepage": "https://github.com/JossyDevers/cron-expression-input#readme",
+  "homepage": "https://github.com/QuentiumYT/CronInputUI#readme",
   "keywords": [
     "cron",
     "crontab",

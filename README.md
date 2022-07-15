@@ -18,7 +18,7 @@ Cron Expression Input is exported as an [UMD](https://github.com/umdjs/umd) modu
 First, install the module:
 
 ```
-npm install cron-expression-input
+npm install cron-input-ui
 ```
 
 Then, depending upon your usage context, add a reference to it:
@@ -26,24 +26,24 @@ Then, depending upon your usage context, add a reference to it:
 ### ESM / Webpack / TypeScript
 
 ```js
-import 'cron-expression-input';
-import 'cron-expression-input/dist/locales/en.js';
-import 'cron-expression-input/dist/cron-expression-input.min.css';
+import 'cron-input-ui';
+import 'cron-input-ui/dist/locales/en.js';
+import 'cron-input-ui/dist/cron-input-ui.min.css';
 ```
 
 ### Browser
-The `cron-expression-input.min.js` file from the `/dist` folder in the npm package should be served to the browser.  There are no dependencies so you can simply include the library in a `<script>` tag.
+The `cron-input-ui.min.js` file from the `/dist` folder in the npm package should be served to the browser.  There are no dependencies so you can simply include the library in a `<script>` tag.
 
 ```html
-<link rel="stylesheet" href="cron-expression-input.min.css" />
+<link rel="stylesheet" href="cron-input-ui.min.css" />
 
 <form>
-    <cron-expression-input height="34px" width="250px" color="d58512" required hotValidate value="* * * * *">
-    </cron-expression-input>
+    <cron-input-ui height="34px" width="250px" color="d58512" required hotValidate value="* * * * *">
+    </cron-input-ui>
     <input type="submit" value="Send form" style="margin-top: 20px;" />
 </form>
 
-<script src="cron-expression-input.min.js" type="text/javascript"></script>
+<script src="cron-input-ui.min.js" type="text/javascript"></script>
 <script src="locales/en.js" type="text/javascript"></script>
 ```
 
@@ -53,20 +53,20 @@ A simple way to load the library in a browser is by using the [unpkg](https://un
 "fast, global content delivery network for everything on npm". To use it, include a script tag like this in your file:
 
 ```html
-<script src="https://unpkg.com/cron-expression-input@2.0.0/dist/cron-expression-input.min.js" async></script>
+<script src="https://unpkg.com/cron-input-ui@2.0.0/dist/cron-input-ui.min.js" async></script>
 <!-- Language (Optional) -->
-<script src="https://unpkg.com/cron-expression-input@2.0.0/dist/locales/en.js" async></script>
+<script src="https://unpkg.com/cron-input-ui@2.0.0/dist/locales/en.js" async></script>
 ```
 
-Using the "latest" tag will result in a 302 redirect to the latest version tag so it is recommended to use a specific version tag such as https://unpkg.com/cron-expression-input@2.0.0/dist/cron-expression-input.min.js to avoid this redirect.
+Using the "latest" tag will result in a 302 redirect to the latest version tag so it is recommended to use a specific version tag such as https://unpkg.com/cron-input-ui@2.0.0/dist/cron-input-ui.min.js to avoid this redirect.
 
 ### React
 
 ```javascript
-import 'cron-expression-input/dist/cron-expression-input.min.css';
+import 'cron-input-ui/dist/cron-input-ui.min.css';
 /* Language (Optional) */
-import 'cron-expression-input/dist/locales/en.js';
-require('cron-expression-input');
+import 'cron-input-ui/dist/locales/en.js';
+require('cron-input-ui');
 
 class App extends React.Component {
     constructor(props) {
@@ -77,7 +77,7 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <cron-expression-input
+                <cron-input-ui
                   value={this.state.cron}
                   onInput={(e) => this.setState({ cron: e.nativeEvent.detail.value })}
                   color='d58512'
@@ -97,7 +97,7 @@ export default App;
 ```javascript
 <template>
   <div id="app">
-    <cron-expression-input
+    <cron-input-ui
       :value="cron"
       v-on:input="cron = $event.detail.value"
       color="d58512"
@@ -108,9 +108,9 @@ export default App;
 </template>
 
 <script>
-import 'cron-expression-input/dist/cron-expression-input.min.css';
-import 'cron-expression-input/dist/locales/en.js'; /* Language (Optional) */
-require('cron-expression-input'); /* JAVASCRIPT */
+import 'cron-input-ui/dist/cron-input-ui.min.css';
+import 'cron-input-ui/dist/locales/en.js'; /* Language (Optional) */
+require('cron-input-ui'); /* JAVASCRIPT */
 
 export default {
   name: 'App',
@@ -125,7 +125,7 @@ export default {
 
 ## Component Attributes
 
-You can pass various attributes to the component to modify its behavior, Example with color attribute: <cron-expression-input color="#d58512"></cron-expression-input>
+You can pass various attributes to the component to modify its behavior, Example with color attribute: <cron-input-ui color="#d58512"></cron-input-ui>
 
 |Name|Type|Default Value|Description|
 |:--:|:--:|:-----------:|:----------|
@@ -140,9 +140,9 @@ You can pass various attributes to the component to modify its behavior, Example
 ## Languages
 
 ```
-import 'cron-expression-input/dist/locales/es.js';
+import 'cron-input-ui/dist/locales/es.js';
 OR
-<script src="https://unpkg.com/cron-expression-input@2.0.0/dist/locales/es.js"></script>
+<script src="https://unpkg.com/cron-input-ui@2.0.0/dist/locales/es.js"></script>
 ```
 
 * en (English)
