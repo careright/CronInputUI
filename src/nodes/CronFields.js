@@ -1,11 +1,15 @@
-var inputLangInternal = {};
-import { lang } from '../i18n/locale.js';
-if (typeof inputLang == 'undefined') inputLangInternal = lang;
-else inputLangInternal = inputLang.default;
+import defaultInputLang from '../i18n/locales/en.js';
 
 import { CronComponent } from './CronComponent.js';
 import { CronFieldTemplateGenerator } from '../templates/CronFieldTemplate.js';
 import { SpecificOptionTemplateGenerator } from '../templates/SpecificOptionTemplate.js';
+
+var inputLangInternal = {};
+if (typeof inputLang == 'undefined') {
+    inputLangInternal = defaultInputLang;
+} else {
+    inputLangInternal = inputLang.default;
+}
 
 export class CronFields extends CronComponent {
     constructor() {

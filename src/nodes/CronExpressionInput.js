@@ -1,7 +1,4 @@
-var inputLangInternal = {};
-import { lang, cronstrueLocales } from '../i18n/locale.js';
-if (typeof inputLang == 'undefined') inputLangInternal = lang;
-else inputLangInternal = inputLang.default;
+import defaultInputLang from '../i18n/locales/en.js';
 
 import { CronComponent } from './CronComponent.js';
 import { CssTemplateGenerator } from '../templates/CssTemplate.js';
@@ -9,6 +6,13 @@ import { CronExpressionInputTemplateGenerator } from '../templates/CronExpressio
 
 import { isValidCron } from 'cron-validator';
 import cronstrue from 'cronstrue/i18n.js';
+
+var inputLangInternal = {};
+if (typeof inputLang == 'undefined') {
+    inputLangInternal = defaultInputLang;
+} else {
+    inputLangInternal = inputLang.default;
+}
 
 export class CronExpressionInput extends CronComponent {
     constructor() {
@@ -254,7 +258,7 @@ export class CronExpressionInput extends CronComponent {
         input3.value = value;
 
         var cronstrueLang = 'en';
-        if (cronstrueLocales.includes(inputLangInternal.code)) {
+        if (Object.keys(cronstrue.default.locales).includes(inputLangInternal.code)) {
             cronstrueLang = inputLangInternal.code;
         }
 
