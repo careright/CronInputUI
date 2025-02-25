@@ -43,7 +43,9 @@ export class CronComponent extends HTMLElement {
     }
     increaseBrightness(hex, percent) {
         hex = hex.replace(/^\s*#|\s*$/g, '');
-        if (hex.length == 3) hex = hex.replace(/(.)/g, '$1$1');
+        if (hex.length == 3) {
+            hex = hex.replace(/(.)/g, '$1$1');
+        }
 
         var r = parseInt(hex.substr(0, 2), 16);
         var g = parseInt(hex.substr(2, 2), 16);
@@ -57,7 +59,9 @@ export class CronComponent extends HTMLElement {
             (0 | ((1 << 8) + g + ((256 - g) * percent) / 100))
                 .toString(16)
                 .substr(1) +
-            (0 | ((1 << 8) + b + ((256 - b) * percent) / 100)).toString(16).substr(1)
+            (0 | ((1 << 8) + b + ((256 - b) * percent) / 100))
+                .toString(16)
+                .substr(1)
         );
     }
 }

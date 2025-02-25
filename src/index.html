@@ -1,29 +1,28 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sample Page</title>
 </head>
 
 <body>
-    <form method="GET">
+    <form method="get">
         <cron-input-ui height="34px" width="250px" color="#052a89"
-                       required="false" hotValidate="true"
+                       required="false" hot-validate="true"
                        value="* * * * *">
         </cron-input-ui>
         <br>
         <cron-input-ui height="68px" width="10%" color="5f963d"
-                       required="false" hotValidate="true"
+                       required="false" hot-validate="true"
                        name="expr" value="* * * * *">
         </cron-input-ui>
-        <input type="submit" value="Send Form" style="margin-top: 20px;" />
+        <input type="submit" value="Envoyer le formulaire" style="margin-top: 20px;" />
     </form>
 
-    <script src="locales/fr.js"></script>
+    <script src="dist/locales/fr.js"></script>
 </body>
 
 </html>

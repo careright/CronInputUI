@@ -1,11 +1,11 @@
 var inputLangInternal = {};
-import { lang } from '../i18n/locale';
+import { lang } from '../i18n/locale.js';
 if (typeof inputLang == 'undefined') inputLangInternal = lang;
 else inputLangInternal = inputLang.default;
 
-import { CronComponent } from './CronComponent';
-import { CronFieldTemplateGenerator } from '../templates/CronFieldTemplate';
-import { SpecificOptionTemplateGenerator } from '../templates/SpecificOptionTemplate';
+import { CronComponent } from './CronComponent.js';
+import { CronFieldTemplateGenerator } from '../templates/CronFieldTemplate.js';
+import { SpecificOptionTemplateGenerator } from '../templates/SpecificOptionTemplate.js';
 
 export class CronFields extends CronComponent {
     constructor() {
@@ -54,13 +54,17 @@ export class CronFields extends CronComponent {
     makeCron(choice, input) {
         var expression = '*';
         if (choice == 1) {
-            if (input.start == '*') expression = `${input.every}`;
-            else expression = `${input.start}/${input.every}`;
-        } else if (choice == 2 && !(input.rangeMin == '*' || input.rangeMax == '*')
-        ) {
+            if (input.start == '*') {
+                expression = `${input.every}`;
+            } else {
+                expression = `${input.start}/${input.every}`;
+            }
+        } else if (choice == 2 && !(input.rangeMin == '*' || input.rangeMax == '*')) {
             let min = parseInt(input.rangeMin);
             let max = parseInt(input.rangeMax);
-            if (min < max) expression = `${input.rangeMin}-${input.rangeMax}`;
+            if (min < max) {
+                expression = `${input.rangeMin}-${input.rangeMax}`;
+            }
         } else if (choice == 3 && input.specific.length != 0) {
             expression = '';
             input.specific.forEach((m) => {
@@ -73,7 +77,7 @@ export class CronFields extends CronComponent {
     eventListen(attr) {
         var self = this;
         this.getElements(attr).forEach((element) => {
-            element.addEventListener('change', (e) => {
+            element.addEventListener('change', () => {
                 var choice = self.getElement('*[match=choice]:checked').value;
                 var every = self.getElement('*[match=every]').value;
                 var start = self.getElement('*[match=start]').value;

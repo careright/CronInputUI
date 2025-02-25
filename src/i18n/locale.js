@@ -1,4 +1,4 @@
-import inputLang from './locales/en';
+import inputLang from './locales/en.js';
 
 const cronstrueLocales = [
     'af',

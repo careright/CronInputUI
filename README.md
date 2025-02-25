@@ -53,7 +53,7 @@ The `cron-input-ui.min.js` file from the `/dist` folder in the npm package shoul
 <link rel="stylesheet" href="cron-input-ui.min.css" />
 
 <form>
-    <cron-input-ui height="34px" width="250px" color="d58512" required hotValidate value="* * * * *">
+    <cron-input-ui height="34px" width="250px" color="d58512" required hot-validate value="* * * * *">
     </cron-input-ui>
     <input type="submit" value="Send form" style="margin-top: 20px;" />
 </form>
@@ -68,12 +68,12 @@ A simple way to load the library in a browser is by using the [unpkg](https://un
 "fast, global content delivery network for everything on npm". To use it, include a script tag like this in your file:
 
 ```html
-<script src="https://unpkg.com/cron-input-ui@2.0.0/dist/cron-input-ui.min.js" async></script>
+<script src="https://unpkg.com/cron-input-ui@2.1.0/dist/cron-input-ui.min.js" async></script>
 <!-- Language (Optional) -->
-<script src="https://unpkg.com/cron-input-ui@2.0.0/dist/locales/en.js" async></script>
+<script src="https://unpkg.com/cron-input-ui@2.1.0/dist/locales/en.js" async></script>
 ```
 
-Using the "latest" tag will result in a 302 redirect to the latest version tag so it is recommended to use a specific version tag such as https://unpkg.com/cron-input-ui@2.0.0/dist/cron-input-ui.min.js to avoid this redirect.
+Using the "latest" tag will result in a 302 redirect to the latest version tag so it is recommended to use a specific version tag such as https://unpkg.com/cron-input-ui@2.1.0/dist/cron-input-ui.min.js to avoid this redirect.
 
 ### React
 
@@ -81,7 +81,7 @@ Using the "latest" tag will result in a 302 redirect to the latest version tag s
 import 'cron-input-ui/dist/cron-input-ui.min.css';
 /* Language (Optional) */
 import 'cron-input-ui/dist/locales/en.js';
-require('cron-input-ui');
+import 'cron-input-ui';
 
 class App extends React.Component {
     constructor(props) {
@@ -114,18 +114,19 @@ export default App;
   <div id="app">
     <cron-input-ui
       :value="cron"
-      v-on:input="cron = $event.detail.value"
+      @input="cron = $event.detail.value"
       color="d58512"
       :required="true"
-      :hotValidate="true"
+      :hot-validate="true"
      />
   </div>
 </template>
 
 <script>
 import 'cron-input-ui/dist/cron-input-ui.min.css';
-import 'cron-input-ui/dist/locales/en.js'; /* Language (Optional) */
-require('cron-input-ui'); /* JAVASCRIPT */
+/* Language (Optional) */
+import 'cron-input-ui/dist/locales/en.js';
+import 'cron-input-ui';
 
 export default {
   name: 'App',
@@ -142,22 +143,22 @@ export default {
 
 You can pass various attributes to the component to modify its behavior, Example with color attribute: <cron-input-ui color="#d58512"></cron-input-ui>
 
-|Name|Type|Default Value|Description|
-|:--:|:--:|:-----------:|:----------|
-|**`name`**|`{String}`|`cron`|The name that the form variable|
-|**`width`**|`{String}`|`234px`|The width of the component input|
-|**`height`**|`{String}`|`34px`|The height of the component input|
-|**`value`**|`{String}`|`* * * * *`|Allow to set a default value on the component|
-|**`color`**|`{String}`|`#d58512`|The main color that the component elements will take, (hexadecimal recommended)|
-|**`required`**|`{Boolean}`|`false`|Allow component to be empty, if set, the form will not validate when empty|
-|**`hotValidate`**|`{Boolean}`|`false`|Enable cron validation while editing it, if not set, it will only be validated when the submit event is performed within a form or by clicking on the save button|
+|        Name        |    Type     | Default Value | Description                                                                                                                                                       |
+|:------------------:|:-----------:|:-------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|     **`name`**     | `{String}`  |    `cron`     | The name that the form variable                                                                                                                                   |
+|    **`width`**     | `{String}`  |    `234px`    | The width of the component input                                                                                                                                  |
+|    **`height`**    | `{String}`  |    `34px`     | The height of the component input                                                                                                                                 |
+|    **`value`**     | `{String}`  |  `* * * * *`  | Allow to set a default value on the component                                                                                                                     |
+|    **`color`**     | `{String}`  |   `#d58512`   | The main color that the component elements will take, (hexadecimal recommended)                                                                                   |
+|   **`required`**   | `{Boolean}` |    `false`    | Allow component to be empty, if set, the form will not validate when empty                                                                                        |
+| **`hot-validate`** | `{Boolean}` |    `false`    | Enable cron validation while editing it, if not set, it will only be validated when the submit event is performed within a form or by clicking on the save button |
 
 ## Languages
 
 ```
 import 'cron-input-ui/dist/locales/es.js';
 OR
-<script src="https://unpkg.com/cron-input-ui@2.0.0/dist/locales/es.js"></script>
+<script src="https://unpkg.com/cron-input-ui@2.1.0/dist/locales/es.js"></script>
 ```
 
 * en (English)

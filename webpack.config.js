@@ -1,31 +1,28 @@
-const path = require('path');
-const fs = require('fs');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
+import path from 'path';
+import fs from 'fs';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import TerserPlugin from 'terser-webpack-plugin';
 
-var libraryName = require('./package.json').name;
-
-var entryPoints = {
-  [libraryName]: './src/index.js',
-  [libraryName + '.min']: './src/index.js',
+const entryPoints = {
+  ['cron-input-ui']: './src/index.js',
+  ['cron-input-ui.min']: './src/index.js',
 };
 
-var localeEntryPoints = {};
+let localeEntryPoints = {};
 let localePath = path.resolve('src', 'i18n', 'locales');
 for (let locale of fs.readdirSync(localePath)) {
   const code = path.basename(locale, path.extname(locale));
-  localeEntryPoints[`locales/${code}`] = path.resolve(localePath, locale);
   localeEntryPoints[`dist/locales/${code}`] = path.resolve(localePath, locale);
 }
 
-module.exports = [{
+export default [{
   mode: process.env.NODE_ENV || 'development',
   entry: entryPoints,
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve('dist'),
     filename: '[name].js',
-    library: libraryName,
+    library: 'cron-input-ui',
     libraryTarget: 'umd',
     umdNamedDefine: true,
     globalObject: 'globalThis',
@@ -51,7 +48,7 @@ module.exports = [{
           options: {
             presets: ['@babel/preset-env'],
           },
-        }
+        },
       },
       {
         test: /\.js$/,
@@ -78,7 +75,7 @@ module.exports = [{
     new HtmlWebpackPlugin({
       filename: './index.html',
       template: './src/index.html',
-      chunks: [libraryName],
+      chunks: ['cron-input-ui'],
     }),
     new MiniCssExtractPlugin({
       filename: './cron-input-ui.css',
@@ -89,8 +86,7 @@ module.exports = [{
   mode: 'production',
   entry: localeEntryPoints,
   output: {
-    path: __dirname,
-    // path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(),
     filename: '[name].js',
     library: 'inputLang',
     libraryTarget: 'var',

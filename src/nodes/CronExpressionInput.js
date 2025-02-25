@@ -1,14 +1,14 @@
 var inputLangInternal = {};
-import { lang, cronstrueLocales } from '../i18n/locale';
+import { lang, cronstrueLocales } from '../i18n/locale.js';
 if (typeof inputLang == 'undefined') inputLangInternal = lang;
 else inputLangInternal = inputLang.default;
 
-import { CronComponent } from './CronComponent';
-import { CssTemplateGenerator } from '../templates/CssTemplate';
-import { CronExpressionInputTemplateGenerator } from '../templates/CronExpressionInputTemplate';
+import { CronComponent } from './CronComponent.js';
+import { CssTemplateGenerator } from '../templates/CssTemplate.js';
+import { CronExpressionInputTemplateGenerator } from '../templates/CronExpressionInputTemplate.js';
 
-const cron = require('cron-validator');
-const cronstrue = require('cronstrue/i18n');
+import { isValidCron } from 'cron-validator';
+import cronstrue from 'cronstrue/i18n.js';
 
 export class CronExpressionInput extends CronComponent {
     constructor() {
@@ -21,7 +21,7 @@ export class CronExpressionInput extends CronComponent {
         this.height = this.getAttribute('height') || '34px';
         this.value = this.getAttribute('value') || '* * * * *';
         this.required = this.getAttribute('required') !== null;
-        this.hotValidate = this.getAttribute('hotValidate') !== null;
+        this.hotValidate = this.getAttribute('hot-validate') !== null;
         this.color = this.getAttribute('color') || '#d58512';
         this.colorMain = '#' + this.color.replace('#', '');
         this.colorSecond = this.increaseBrightness(this.colorMain, 30);
@@ -51,7 +51,9 @@ export class CronExpressionInput extends CronComponent {
             self.querySelectorAll('form').forEach((element) => element.reset());
             if (self.getElementsByClassName('cronInsideInput').length != 0) {
                 self.currentValue = self.getElementsByClassName('cronInsideInput')[0].value;
-                if (self.currentValue.split(' ').length == 5) self.getCron(self.currentValue);
+                if (self.currentValue.split(' ').length == 5) {
+                    self.getCron(self.currentValue);
+                }
             }
             self.modalToggle();
         });
@@ -90,18 +92,22 @@ export class CronExpressionInput extends CronComponent {
         var formParent = self.querySelector('.cronInsideInput').closest('form');
         if (formParent != null) {
             formParent.closest('form').addEventListener('submit', (e) => {
-                if (!self.validator(self)) e.preventDefault();
+                if (!self.validator(self)) {
+                    e.preventDefault();
+                }
             });
         }
         if (self.hotValidate) {
-            this.addEvent('.cronInsideInput', 'input', (e) => self.validator(self));
+            this.addEvent('.cronInsideInput', 'input', () => self.validator(self));
         }
         this.addEvent('cron-fields', 'change', (e) => {
             var value = true;
             var node = e.parentNode;
             while (value) {
                 node = node.parentNode;
-                if (node.nodeName == 'CRON-FIELDS') value = false;
+                if (node.nodeName == 'CRON-FIELDS') {
+                    value = false;
+                }
             }
 
             var input2 = self.getElement('.cronInsideInput');
@@ -128,7 +134,7 @@ export class CronExpressionInput extends CronComponent {
         var insideInput = self.querySelector('.cronInsideInput');
         var error = self.getElement('.cronExpressionError');
         var missing = self.getElement('.cronExpressionMissing');
-        if (insideInput.value.length != 0 && !cron.isValidCron(insideInput.value, { allowSevenAsSunday: true })) {
+        if (insideInput.value.length != 0 && !isValidCron(insideInput.value, { allowSevenAsSunday: true })) {
             error.classList.replace('hidden', 'show');
             missing.classList.replace('show', 'hidden');
             return false;
@@ -143,9 +149,13 @@ export class CronExpressionInput extends CronComponent {
         return true;
     }
     getTypeCron(expression) {
-        if (expression.includes('/') || expression.includes('*')) return 1;
-        else if (expression.includes('-')) return 2;
-        return 3;
+        if (expression.includes('/') || expression.includes('*')) {
+            return 1;
+        } else if (expression.includes('-')) {
+            return 2;
+        } else {
+            return 3;
+        }
     }
     getTypeFrequency(expression) {
         const separator = '/';
@@ -153,9 +163,11 @@ export class CronExpressionInput extends CronComponent {
             every: '*',
             start: '*',
         };
-        if (!expression.includes(separator) && expression != '*') freq.every = expression;
-        else if (expression.includes('*') && expression.includes(separator)) freq.start = expression.split(separator)[1];
-        else if (expression.includes(separator)) {
+        if (!expression.includes(separator) && expression != '*') {
+            freq.every = expression;
+        } else if (expression.includes('*') && expression.includes(separator)) {
+            freq.start = expression.split(separator)[1];
+        } else if (expression.includes(separator)) {
             var c = expression.split(separator);
             freq.every = c[0];
             freq.start = c[1];
@@ -212,32 +224,38 @@ export class CronExpressionInput extends CronComponent {
                 form
                     .querySelectorAll('*[match=specific] input')
                     .forEach((element, index) => {
-                        if (cs.includes((index + decrement).toString())) element.checked = true;
+                        if (cs.includes((index + decrement).toString())) {
+                            element.checked = true;
+                        }
                     });
                 break;
         }
     }
     validateLongitude(e) {
         var values = e.target.value.trim().split(' ');
-        if (values.length > 5) e.target.value = values.slice(0, 5).join(' ');
+        if (values.length > 5) {
+            e.target.value = values.slice(0, 5).join(' ');
+        }
         this.sendEvent();
     }
     setValue(value) {
         var defaultArray = ['*', '*', '*', '*', '*'];
-        if (value == undefined) return defaultArray.join(' ');
-        else if (value.length > 0) {
+        if (value == undefined) {
+            return defaultArray.join(' ');
+        } else if (value.length > 0) {
             var array = value.trim().split(' ');
             for (var i = 0; i < 5; i++)
-                if (array[i] != undefined) defaultArray[i] = array[i];
+                if (array[i] != undefined) {
+                    defaultArray[i] = array[i];
+                }
             value = defaultArray.join(' ');
         }
         var input3 = this.getElement('.cronInsideInput');
         input3.value = value;
 
+        var cronstrueLang = 'en';
         if (cronstrueLocales.includes(inputLangInternal.code)) {
-            var cronstrueLang = inputLangInternal.code;
-        } else {
-            var cronstrueLang = 'en';
+            cronstrueLang = inputLangInternal.code;
         }
 
         this.querySelector('.inputCronMsg').value = cronstrue.toString(value, { locale: cronstrueLang });
