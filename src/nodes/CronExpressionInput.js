@@ -51,7 +51,7 @@ export class CronExpressionInput extends CronComponent {
         input1.addEventListener('keydown', (e) => self.validateLongitude(e));
         input1.addEventListener('keypress', (e) => self.validateLongitude(e));
         input1.addEventListener('keyup', (e) => self.validateLongitude(e));
-        this.addEvent('.cronButtonUI', 'click', () => {
+        this.addEvent('.cronButton', 'click', () => {
             self.querySelectorAll('form').forEach((element) => element.reset());
             if (self.getElementsByClassName('cronInsideInput').length != 0) {
                 self.currentValue = self.getElementsByClassName('cronInsideInput')[0].value;
@@ -83,15 +83,15 @@ export class CronExpressionInput extends CronComponent {
         this.addEvent('li > a', 'click', (scope) => {
             var index = 0;
             self.getElements('li > a').forEach(function (elem, i) {
-                elem.parentNode.setAttribute('class', 'nav-link');
+                elem.parentNode.setAttribute('class', 'nav-item');
                 if (elem == scope) {
                     index = i;
                 }
             });
-            scope.parentNode.setAttribute('class', 'nav-link active in');
+            scope.parentNode.setAttribute('class', 'nav-item active');
             var elements = self.getElements('cron-fields');
             elements.forEach((elem) => elem.parentNode.setAttribute('class', 'tab-pane fade'));
-            elements[index].parentNode.setAttribute('class', 'tab-pane active in');
+            elements[index].parentNode.setAttribute('class', 'tab-pane active');
         });
         var formParent = self.querySelector('.cronInsideInput').closest('form');
         if (formParent != null) {

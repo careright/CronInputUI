@@ -1,40 +1,38 @@
 cron-input-ui * {
     font-size: 16px;
     line-height: 20px;
-    color: black;
+    color: #000;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
-cron-input-ui .cronInput {
+cron-input-ui .element {
     height: 34px;
+    line-height: normal;
     position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
 }
 
-cron-input-ui .cronInput input[type="text"] {
-    width: 98%;
+cron-input-ui .element input[type="text"] {
+    width: 100%;
+    -webkit-box-shadow: none;
     box-shadow: none;
     padding-left: 10px;
-    padding-top: 0px;
-    padding-bottom: 0px;
+    padding-top: 0;
+    padding-bottom: 0;
     border: 1px #ccc solid;
+    border-radius: 4px;
 }
 
-cron-input-ui .cronInput button {
+cron-input-ui .element button {
     position: absolute;
     right: 0;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     z-index: 2;
-}
-
-cron-input-ui .cronInput input {
-    line-height: normal;
-}
-
-cron-input-ui * {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
 }
 
 cron-input-ui button,
@@ -46,9 +44,12 @@ cron-input-ui select {
 }
 
 cron-input-ui label {
-    display: inline-block;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 10px;
     max-width: 100%;
-    margin-bottom: 5px;
+    cursor: pointer;
 }
 
 cron-input-ui input[type="checkbox"],
@@ -59,8 +60,25 @@ cron-input-ui input[type="radio"] {
 
 cron-input-ui input[type="checkbox"]:focus,
 cron-input-ui input[type="radio"]:focus {
-    outline: 5px auto -webkit-focus-ring-color;
+    outline: 5px auto;
     outline-offset: -2px;
+}
+
+cron-input-ui .form-group-full {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+cron-input-ui .form-group-half {
+    width: 50%;
+}
+
+cron-input-ui .form-check-label {
+    font-size: 14px;
 }
 
 cron-input-ui .form-control {
@@ -68,8 +86,8 @@ cron-input-ui .form-control {
     width: 100%;
     height: 34px;
     padding: 6px 12px;
+    margin-top: 10px;
     font-size: 14px;
-    line-height: 1.4;
     color: #555;
     background-color: #fff;
     background-image: none;
@@ -78,8 +96,9 @@ cron-input-ui .form-control {
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     -webkit-transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
-    -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
     transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
 }
 
 cron-input-ui .form-control:focus {
@@ -89,8 +108,13 @@ cron-input-ui .form-control:focus {
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
 }
 
-cron-input-ui .form-group {
-    margin-bottom: 15px;
+cron-input-ui .form-select {
+    margin-top: 0;
+}
+
+cron-input-ui .form-checkbox {
+    margin: 10px;
+    width: 35px;
 }
 
 cron-input-ui .btn {
@@ -99,7 +123,7 @@ cron-input-ui .btn {
     margin-bottom: 0;
     font-size: 14px;
     font-weight: 400;
-    line-height: 1.4;
+    line-height: 0;
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
@@ -163,13 +187,12 @@ cron-input-ui .btn-custom:active {
 cron-input-ui .fade {
     opacity: 0;
     -webkit-transition: opacity 0.15s linear;
-    -o-transition: opacity 0.15s linear;
     transition: opacity 0.15s linear;
 }
 
 cron-input-ui .nav {
     padding-left: 0;
-    margin-bottom: 0;
+    margin: 0;
     list-style: none;
 }
 
@@ -194,26 +217,31 @@ cron-input-ui .nav-tabs {
     border-bottom: 1px solid #ddd;
 }
 
-cron-input-ui .nav-tabs > li {
+cron-input-ui .nav-tabs .nav-item {
     float: left;
     margin-bottom: -1px;
+    cursor: pointer;
 }
 
-cron-input-ui .nav-tabs > li > a {
+cron-input-ui .nav-tabs .nav-link {
     margin-right: 2px;
     line-height: 1.4;
     border: 1px solid transparent;
     border-radius: 4px 4px 0 0;
 }
 
-cron-input-ui .nav-tabs > li.active > a,
-cron-input-ui .nav-tabs > li.active > a:focus,
-cron-input-ui .nav-tabs > li.active > a:hover {
+cron-input-ui .nav-item.active > .nav-link,
+cron-input-ui .nav-item.active > .nav-link:focus,
+cron-input-ui .nav-item.active > .nav-link:hover {
     color: #555;
     cursor: default;
     background-color: #fff;
     border: 1px solid #ddd;
     border-bottom-color: transparent;
+}
+
+cron-input-ui .tab-content {
+    margin-top: 8px;
 }
 
 cron-input-ui .tab-content > .tab-pane {
@@ -224,48 +252,69 @@ cron-input-ui .tab-content > .active {
     display: block;
 }
 
+cron-input-ui .panel-form {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 10px;
+}
+
+cron-input-ui .panel-group {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 10px;
+}
+
+cron-input-ui .panel-group > .panel {
+    width: 50%;
+}
+
 cron-input-ui .panel {
-    margin-bottom: 20px;
     background-color: #fff;
-    border: 1px solid transparent;
+    border: 1px solid #ddd;
     border-radius: 4px;
     -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 }
 
-cron-input-ui .panel-body {
-    padding: 15px;
-}
-
 cron-input-ui .panel-heading {
+    color: #333;
+    background-color: #f5f5f5;
     padding: 10px 15px;
-    border-bottom: 1px solid transparent;
+    border-bottom: 1px solid #ddd;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
 }
 
-cron-input-ui .panel-default {
-    border-color: #ddd;
+cron-input-ui .panel-body {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 10px;
+    padding: 15px;
 }
 
-cron-input-ui .panel-default > .panel-heading {
-    color: #333;
-    background-color: #f5f5f5;
-    border-color: #ddd;
-}
-
-cron-input-ui .close2 {
+cron-input-ui .top-action {
     float: right;
     font-size: 20px;
     font-weight: 700;
     line-height: 1;
 }
 
-cron-input-ui .close2:focus,
-cron-input-ui .close2:hover {
+cron-input-ui .top-action:focus,
+cron-input-ui .top-action:hover {
     text-decoration: none;
     cursor: pointer;
     opacity: 0.6;
+}
+
+cron-input-ui .top-action:last-child {
+    margin-right: 10px;
 }
 
 cron-input-ui .modal {
@@ -285,16 +334,16 @@ cron-input-ui .modal-dialog {
     position: relative;
     width: auto;
     margin: 10px;
+    width: 900px;
+    margin: 30px auto;
 }
 
 cron-input-ui .modal-content {
     position: relative;
     background-color: #fff;
-    -webkit-background-clip: padding-box;
     background-clip: padding-box;
-    border: 1px solid #999;
     border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 6px;
+    border-radius: 8px;
     outline: 0;
     -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
     box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
@@ -302,32 +351,26 @@ cron-input-ui .modal-content {
 
 cron-input-ui .modal-header {
     padding: 15px;
+    height: 0;
+    padding-bottom: 30px;
 }
 
-cron-input-ui .modal-header .close2 {
+cron-input-ui .modal-header .top-action {
     margin-top: -2px;
 }
 
 cron-input-ui .modal-body {
     position: relative;
     top: -15px;
-    padding: 15px;
-    padding-bottom: 0px;
-}
-
-cron-input-ui .modal-dialog {
-    width: 600px;
-    margin: 30px auto;
+    padding: 0 15px;
 }
 
 cron-input-ui .modal-header:after,
 cron-input-ui .modal-header:before,
 cron-input-ui .nav:after,
-cron-input-ui .nav:before,
-cron-input-ui .panel-body:after,
-cron-input-ui .panel-body:before {
+cron-input-ui .nav:before {
     display: table;
-    content: " ";
+    content: "";
 }
 
 cron-input-ui .modal-header:after,
@@ -336,12 +379,17 @@ cron-input-ui .panel-body:after {
     clear: both;
 }
 
-cron-input-ui .show {
-    display: block;
+cron-input-ui .error {
+    color: #f21;
+    margin: 5px 0;
 }
 
 cron-input-ui .hidden {
     display: none;
+}
+
+cron-input-ui .show {
+    display: block;
 }
 
 cron-input-ui input[type="radio"] {
@@ -350,6 +398,8 @@ cron-input-ui input[type="radio"] {
 }
 
 cron-input-ui input[type="radio"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
     appearance: none;
     display: block;
     width: 1em;
@@ -365,13 +415,13 @@ cron-input-ui input[type="radio"]:checked:after {
     height: 12px;
     border-radius: 50%;
     border: none;
-    top: 1px !important;
-    left: 1px !important;
+    top: 1px;
+    left: 1px;
 }
 
 cron-input-ui input[type="checkbox"]:focus,
 cron-input-ui input[type="radio"]:focus,
-cron-input-ui .cronInsideInput:focus,
+cron-input-ui .input:focus,
 cron-input-ui .btn-custom:active {
     outline: none;
 }
@@ -382,10 +432,8 @@ cron-input-ui span {
 }
 
 cron-input-ui .container {
-    display: block;
     position: relative;
     padding-left: 20px;
-    margin-bottom: 12px;
     cursor: pointer;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -429,8 +477,8 @@ cron-input-ui .container .checkmark:after {
     left: 2px;
     top: 6px;
     width: 7px;
-    height: 0px;
-    border: solid white;
+    height: 0;
+    border: solid #fff;
     border-width: 0 3px 3px 0;
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);

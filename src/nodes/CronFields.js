@@ -49,10 +49,7 @@ export class CronFields extends CronComponent {
     addSpecificOptions(attr) {
         var match = this.getElement('*[match=' + attr + ']');
         for (var i = this.getHasZero(); i <= this['every']; i++) {
-            var div = document.createElement('div');
-            div.innerHTML = SpecificOptionTemplateGenerator(this.getNumber(i), i);
-            div.style = 'width: 55px !important;';
-            match.appendChild(div);
+            match.innerHTML += SpecificOptionTemplateGenerator(this.getNumber(i), i);
         }
     }
     makeCron(choice, input) {
