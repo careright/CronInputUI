@@ -1,8 +1,7 @@
 cron-input-ui * {
-    font-size: 16px;
-    line-height: 20px;
-    color: #000;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    -webkit-text-size-adjust: 100%;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
@@ -51,6 +50,9 @@ cron-input-ui label {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
     gap: 10px;
     max-width: 100%;
     cursor: pointer;
@@ -307,7 +309,6 @@ cron-input-ui .top-action {
     float: right;
     font-size: 20px;
     font-weight: 700;
-    line-height: 1;
 }
 
 cron-input-ui .top-action:focus,
@@ -327,7 +328,7 @@ cron-input-ui .modal {
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 1050;
+    z-index: 999;
     display: none;
     overflow: hidden;
     -webkit-overflow-scrolling: touch;
@@ -406,8 +407,8 @@ cron-input-ui input[type="radio"] {
     -moz-appearance: none;
     appearance: none;
     display: block;
-    width: 1em;
-    height: 1em;
+    width: 1rem;
+    height: 1rem;
     border-radius: 50%;
 }
 
@@ -428,11 +429,6 @@ cron-input-ui input[type="radio"]:focus,
 cron-input-ui .input:focus,
 cron-input-ui .btn-custom:active {
     outline: none;
-}
-
-cron-input-ui span {
-    position: relative;
-    z-index: 2;
 }
 
 cron-input-ui .container {

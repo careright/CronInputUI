@@ -15,7 +15,7 @@ cron-input-ui[id=${obj.id}] input[type="radio"]:checked:after {
 }
 
 cron-input-ui[id=${obj.id}] input[type="radio"] {
-    border: 0.1em solid ${obj.colorSecond};
+    border: 1px solid ${obj.colorSecond};
 }
 
 cron-input-ui[id=${obj.id}] .container input:checked ~ .checkmark {
