@@ -133,7 +133,9 @@ export class CronExpressionInput extends CronComponent {
             element.addEventListener('input', (e) => e.stopPropagation())
         );
 
-        this.validator(self);
+        if (self.hotValidate) {
+            this.validator(self);
+        }
     }
     validator(self) {
         var insideInput = self.querySelector('.cronInsideInput');
@@ -142,10 +144,12 @@ export class CronExpressionInput extends CronComponent {
         if (insideInput.value.length != 0 && !isValidCron(insideInput.value, { allowSevenAsSunday: true })) {
             error.classList.replace('hidden', 'show');
             missing.classList.replace('show', 'hidden');
+            this.querySelector('.cronExpressionMessage').innerText = '';
             return false;
         } else if (insideInput.value.length == 0 && self.required) {
             error.classList.replace('show', 'hidden');
             missing.classList.replace('hidden', 'show');
+            this.querySelector('.cronExpressionMessage').innerText = '';
             return false;
         }
         error.classList.replace('show', 'hidden');
