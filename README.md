@@ -152,6 +152,7 @@ You can pass various attributes to the component to modify its behavior, Example
 |    **`color`**     | `{String}`  |   `#d58512`   | The main color that the component elements will take, (hexadecimal recommended)                                                                                   |
 |   **`required`**   | `{Boolean}` |    `false`    | Allow component to be empty, if set, the form will not validate when empty                                                                                        |
 | **`hot-validate`** | `{Boolean}` |    `false`    | Enable cron validation while editing it, if not set, it will only be validated when the submit event is performed within a form or by clicking on the save button |
+| **`show-message`** | `{Boolean}` |    `false`    | Display the cron representation in human language below the input (always visible in cron modal and on hover of the input)                                        |
 
 ## Languages
 

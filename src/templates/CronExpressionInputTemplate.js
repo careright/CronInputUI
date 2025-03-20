@@ -9,8 +9,9 @@ export function CronExpressionInputTemplateGenerator(obj, objLang) {
         </svg>
     </button>
 </div>
-<small class="cronExpressionError error hidden">${objLang.invalidCron}</small>
+<i><small class="cronExpressionMessage"></small></i>
 <small class="cronExpressionMissing hidden">${objLang.missingCron}</small>
+<small class="cronExpressionError error hidden">${objLang.invalidCron}</small>
 <div class="modal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">

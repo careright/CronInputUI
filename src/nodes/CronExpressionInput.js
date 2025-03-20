@@ -24,13 +24,13 @@ export class CronExpressionInput extends CronComponent {
         this.width = this.getAttribute('width') || '234px';
         this.height = this.getAttribute('height') || '34px';
         this.value = this.getAttribute('value') || '* * * * *';
-        this.required = this.getAttribute('required') !== null;
-        this.hotValidate = this.getAttribute('hot-validate') !== null;
+        this.required = [true, 'true', ''].includes(this.getAttribute('required'));
+        this.hotValidate = [true, 'true', ''].includes(this.getAttribute('hot-validate'));
+        this.showMessage = [true, 'true', ''].includes(this.getAttribute('show-message'));
         this.color = this.getAttribute('color') || '#d58512';
         this.colorMain = '#' + this.color.replace('#', '');
         this.colorSecond = this.increaseBrightness(this.colorMain, 30);
-        this.id = this.name + '_' + Math.random().toString(16).substr(2);
-        this.title = "";
+        this.id = this.name + '_' + Math.random().toString(16).substring(2);
 
         // Force attribute without hashtag for specific CSS
         this.setAttribute('id', this.id);
@@ -260,7 +260,10 @@ export class CronExpressionInput extends CronComponent {
 
         var humanString = this.humanize(value);
         this.querySelector('.inputCronMsg').value = humanString;
-        this.querySelector('.cronInsideInput').setAttribute("title", humanString);
+        this.querySelector('.cronInsideInput').setAttribute('title', humanString);
+        if (this.showMessage) {
+            this.querySelector('.cronExpressionMessage').innerText = humanString;
+        }
         this.sendEvent();
     }
     humanize(value) {
