@@ -27,6 +27,10 @@ cron-input-ui .element input[type="text"] {
     border-radius: 4px;
 }
 
+cron-input-ui .element input[readonly] {
+    background-color: #eee;
+}
+
 cron-input-ui .element button {
     position: absolute;
     right: 0;
