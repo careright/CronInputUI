@@ -55,7 +55,8 @@ The `cron-input-ui.min.js` file from the `/dist` folder in the npm package shoul
 <form>
     <cron-input-ui height="34px" width="250px" color="d58512" required hot-validate value="* * * * *">
     </cron-input-ui>
-    <input type="submit" value="Send form" style="margin-top: 20px;" />
+    <br>
+    <input type="submit" value="Send form" />
 </form>
 
 <script src="cron-input-ui.min.js" type="text/javascript"></script>

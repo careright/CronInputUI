@@ -48,10 +48,11 @@ export class CronExpressionInput extends CronComponent {
         this.Create(self, template);
         this.setValue(this.value);
 
-        var input1 = this.getElement('.cronInsideInput');
-        input1.addEventListener('keydown', (e) => self.validateLongitude(e));
-        input1.addEventListener('keypress', (e) => self.validateLongitude(e));
-        input1.addEventListener('keyup', (e) => self.validateLongitude(e));
+        var input = this.getElement('.cronInsideInput');
+        input.addEventListener('keydown', (e) => self.validateLongitude(e));
+        input.addEventListener('keypress', (e) => self.validateLongitude(e));
+        input.addEventListener('keyup', (e) => self.validateLongitude(e));
+
         this.addEvent('.cronButton', 'click', () => {
             self.querySelectorAll('form').forEach((element) => element.reset());
             if (self.getElementsByClassName('cronInsideInput').length != 0) {
@@ -115,11 +116,10 @@ export class CronExpressionInput extends CronComponent {
                 }
             }
 
-            var input2 = self.getElement('.cronInsideInput');
             self.setValue(
                 self.generateCron(
                     parseInt(node.getAttribute('pos')),
-                    input2['value'],
+                    self.getElement('.cronInsideInput').value,
                     node.value
                 )
             );
@@ -133,7 +133,7 @@ export class CronExpressionInput extends CronComponent {
             element.addEventListener('input', (e) => e.stopPropagation())
         );
 
-        self.validator(self);
+        this.validator(self);
     }
     validator(self) {
         var insideInput = self.querySelector('.cronInsideInput');
@@ -150,7 +150,7 @@ export class CronExpressionInput extends CronComponent {
         }
         error.classList.replace('show', 'hidden');
         missing.classList.replace('show', 'hidden');
-        self.setValue(insideInput['value']);
+        self.setValue(insideInput.value);
         return true;
     }
     getTypeCron(expression) {
@@ -255,8 +255,7 @@ export class CronExpressionInput extends CronComponent {
                 }
             value = defaultArray.join(' ');
         }
-        var input3 = this.getElement('.cronInsideInput');
-        input3.value = value;
+        this.getElement('.cronInsideInput').value = value;
 
         var humanString = this.humanize(value);
         this.querySelector('.inputCronMsg').value = humanString;
@@ -282,10 +281,9 @@ export class CronExpressionInput extends CronComponent {
         return val.join(' ');
     }
     sendEvent() {
-        var input4 = this.getElement('.cronInsideInput');
         var event = new CustomEvent('input', {
             detail: {
-                value: input4.value,
+                value: this.getElement('.cronInsideInput').value,
             },
             bubbles: true,
             cancelable: true,
