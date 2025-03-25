@@ -155,6 +155,7 @@ You can pass various attributes to the component to modify its behavior, Example
 | **`hot-validate`** | `{Boolean}` |    `false`    | Enable cron validation while editing it, if not set, it will only be validated when the submit event is performed within a form or by clicking on the save button |
 | **`show-message`** | `{Boolean}` |    `false`    | Display the cron representation in human language below the input (always visible in cron modal and on hover of the input)                                        |
 |   **`no-input`**   | `{Boolean}` |    `false`    | Disable the input and only allow the cron to be edited in the modal                                                                                               |
+| **`default-tab`**  | `{String}`  |   `minutes`   | The default tab that will be displayed when the component is loaded, it can be: `minutes`, `hours`, `days-of-month`, `months`, `days-of-week` or `year`           |
 
 ## Languages
 

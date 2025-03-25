@@ -28,6 +28,7 @@ export class CronExpressionInput extends CronComponent {
         this.hotValidate = [true, 'true', ''].includes(this.getAttribute('hot-validate'));
         this.showMessage = [true, 'true', ''].includes(this.getAttribute('show-message'));
         this.noInput = [true, 'true', ''].includes(this.getAttribute('no-input'));
+        this.defaultTab = this.getAttribute('default-tab') || 'minutes';
         this.color = this.getAttribute('color') || '#d58512';
         this.colorMain = '#' + this.color.replace('#', '');
         this.colorSecond = this.increaseBrightness(this.colorMain, 30);

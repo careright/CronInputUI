@@ -31,27 +31,37 @@ export function CronExpressionInputTemplateGenerator(obj, objLang) {
             </div>
             <div class="modal-body">
                 <ul class="nav nav-tabs">
-                    <li class="nav-item active"><a class="nav-link">${objLang.minutes}</a></li>
-                    <li class="nav-item"><a class="nav-link">${objLang.hours}</a></li>
-                    <li class="nav-item"><a class="nav-link">${objLang.daysOfMonth}</a></li>
-                    <li class="nav-item"><a class="nav-link">${objLang.month}</a></li>
-                    <li class="nav-item"><a class="nav-link">${objLang.daysOfWeek}</a></li>
+                    <li class="nav-item ${obj.defaultTab === 'minutes' ? 'active' : ''}">
+                        <a class="nav-link">${objLang.minutes}</a>
+                    </li>
+                    <li class="nav-item ${obj.defaultTab === 'hours' ? 'active' : ''}">
+                        <a class="nav-link">${objLang.hours}</a>
+                    </li>
+                    <li class="nav-item ${obj.defaultTab === 'days-of-month' ? 'active' : ''}">
+                        <a class="nav-link">${objLang.daysOfMonth}</a>
+                    </li>
+                    <li class="nav-item ${obj.defaultTab === 'months' ? 'active' : ''}">
+                        <a class="nav-link">${objLang.month}</a>
+                    </li>
+                    <li class="nav-item ${obj.defaultTab === 'days-of-week' ? 'active' : ''}">
+                        <a class="nav-link">${objLang.daysOfWeek}</a>
+                    </li>
                 </ul>
                 <input class="inputCronMsg form-control" disabled />
                 <div class="tab-content">
-                    <div class="tab-pane active">
+                    <div class="tab-pane ${obj.defaultTab === 'minutes' ? 'active' : 'fade'}">
                         <cron-fields pos="0" input="minutes" hasZero="true" every="59" colorMain="${obj.colorMain}" colorSecond="${obj.colorSecond}" />
                     </div>
-                    <div class="tab-pane fade">
+                    <div class="tab-pane ${obj.defaultTab === 'hours' ? 'active' : 'fade'}">
                         <cron-fields pos="1" input="hours" hasZero="true" every="23" colorMain="${obj.colorMain}" colorSecond="${obj.colorSecond}" />
                     </div>
-                    <div class="tab-pane fade">
+                    <div class="tab-pane ${obj.defaultTab === 'days-of-month' ? 'active' : 'fade'}">
                         <cron-fields pos="2" input="daysOfMonth" every="31" colorMain="${obj.colorMain}" colorSecond="${obj.colorSecond}" />
                     </div>
-                    <div class="tab-pane fade">
+                    <div class="tab-pane ${obj.defaultTab === 'months' ? 'active' : 'fade'}">
                         <cron-fields pos="3" input="months" every="12" colorMain="${obj.colorMain}" colorSecond="${obj.colorSecond}" />
                     </div>
-                    <div class="tab-pane fade">
+                    <div class="tab-pane ${obj.defaultTab === 'days-of-week' ? 'active' : 'fade'}">
                         <cron-fields pos="4" input="daysOfWeek" hasZero="true" every="7" colorMain="${obj.colorMain}" colorSecond="${obj.colorSecond}" />
                     </div>
                 </div>
