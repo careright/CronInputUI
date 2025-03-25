@@ -40,19 +40,19 @@ export function CronExpressionInputTemplateGenerator(obj, objLang) {
                 <input class="inputCronMsg form-control" disabled />
                 <div class="tab-content">
                     <div class="tab-pane active">
-                        <cron-fields pos="0" input="minute" hasZero="true" every="59" colorMain="${obj.colorMain}" colorSecond="${obj.colorSecond}" />
+                        <cron-fields pos="0" input="minutes" hasZero="true" every="59" colorMain="${obj.colorMain}" colorSecond="${obj.colorSecond}" />
                     </div>
                     <div class="tab-pane fade">
-                        <cron-fields pos="1" input="hour" hasZero="true" every="23" colorMain="${obj.colorMain}" colorSecond="${obj.colorSecond}" />
+                        <cron-fields pos="1" input="hours" hasZero="true" every="23" colorMain="${obj.colorMain}" colorSecond="${obj.colorSecond}" />
                     </div>
                     <div class="tab-pane fade">
                         <cron-fields pos="2" input="daysOfMonth" every="31" colorMain="${obj.colorMain}" colorSecond="${obj.colorSecond}" />
                     </div>
                     <div class="tab-pane fade">
-                        <cron-fields pos="3" input="month" every="12" colorMain="${obj.colorMain}" colorSecond="${obj.colorSecond}" />
+                        <cron-fields pos="3" input="months" every="12" colorMain="${obj.colorMain}" colorSecond="${obj.colorSecond}" />
                     </div>
                     <div class="tab-pane fade">
-                        <cron-fields pos="4" input="dayOfWeek" hasZero="true" every="7" colorMain="${obj.colorMain}" colorSecond="${obj.colorSecond}" />
+                        <cron-fields pos="4" input="daysOfWeek" hasZero="true" every="7" colorMain="${obj.colorMain}" colorSecond="${obj.colorSecond}" />
                     </div>
                 </div>
             </div>
