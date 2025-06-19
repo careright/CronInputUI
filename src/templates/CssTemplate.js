@@ -14,6 +14,10 @@ cron-input-ui[id=${obj.id}] input[type="radio"]:checked:after {
     background-color: ${obj.colorMain};
 }
 
+cron-input-ui[id=${obj.id}] .panel:has(input[type="radio"]:checked) {
+    border-color: ${obj.colorMain};
+}
+
 cron-input-ui[id=${obj.id}] input[type="radio"] {
     border: 1px solid ${obj.colorSecond};
 }
