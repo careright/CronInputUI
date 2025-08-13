@@ -62,7 +62,7 @@ export function CronExpressionInputTemplateGenerator(obj, objLang) {
                         <cron-fields pos="3" input="months" every="12" colorMain="${obj.colorMain}" colorSecond="${obj.colorSecond}" />
                     </div>
                     <div class="tab-pane ${obj.defaultTab === 'days-of-week' ? 'active' : 'fade'}">
-                        <cron-fields pos="4" input="daysOfWeek" hasZero="true" every="7" colorMain="${obj.colorMain}" colorSecond="${obj.colorSecond}" />
+                        <cron-fields pos="4" input="daysOfWeek" every="7" colorMain="${obj.colorMain}" colorSecond="${obj.colorSecond}" />
                     </div>
                 </div>
             </div>
