@@ -222,4 +222,13 @@ export class CronFields extends CronComponent {
         }
     }
 
+    selectDefault() {
+        const isChecked = this.querySelector('input[match="choice"][value="1"]').checked;
+
+        if (isChecked) {
+            console.log('Frequency is selected');
+        } else {
+            console.log('Frequency is NOT selected');
+        }
+    }
 }

@@ -228,35 +228,70 @@ export class CronExpressionInput extends CronComponent {
         this.setCronInTab(forms[4], crons[4], this.getTypeCron(crons[4]));
     }
     setCronInTab(form, value, type, decrement = 0) {
-        var choices = form.querySelectorAll('input[name=choice]');
-        choices.forEach((choice) => choice.removeAttribute('checked'));
-        choices[type - 1].checked = true;
-        if (this.hideOtherTabs) {
-            choices[type - 1].onchange();
+        // If this tab has no concrete value (i.e. "*"), prefer Choice by default
+        const freq  = this.getTypeFrequency(value);     // { every:'*', start:'*' } when empty
+        const range = this.getTypeRange(value);         // { min:'0', max:'0' } when empty
+        const freqEmpty =
+            freq.every === '*' &&
+            freq.start === '*'
+        const rangeEmpty =
+            range.min === '0' &&
+            range.max === '0';
+        if (freqEmpty) {
+            form.querySelector('select[match=every]').disabled = true;
+            form.querySelector('select[match=start]').disabled = true;
+        };
+
+        if (rangeEmpty) {
+            form.querySelector('select[match=rangeMin]').disabled = true;
+            form.querySelector('select[match=rangeMax]').disabled = true;
+        };
+        const isEmpty =
+            value === '*' &&
+            freqEmpty &&
+            rangeEmpty
+
+
+        const choices = form.querySelectorAll('input[name=choice]');
+        choices.forEach((c) => c.removeAttribute('checked'));
+        if (isEmpty) {
+            // Select "Choice" (value=3) when frequency/range are effectively nil
+            if (choices[2]) {
+            choices[2].checked = true;
+            if (this.hideOtherTabs) choices[2].onchange?.();
+            }
+            // nothing else to set in the panel; bail out
+            return;
         }
 
+        // Otherwise honor the parsed type as before
+        choices[type - 1].checked = true;
+        if (this.hideOtherTabs) choices[type - 1].onchange?.();
+
         switch (type) {
-            case 1:
-                var freq = this.getTypeFrequency(value);
-                var decrementFreq = 1 - decrement;
-                form.querySelector('*[match=every]').selectedIndex = parseInt(freq['every']) + decrementFreq;
-                form.querySelector('*[match=start]').selectedIndex = parseInt(freq['start']) + decrementFreq;
-                break;
-            case 2:
-                var range = this.getTypeRange(value);
-                form.querySelector('*[match=rangeMin]').selectedIndex = parseInt(range['min']) - decrement;
-                form.querySelector('*[match=rangeMax]').selectedIndex = parseInt(range['max']) - decrement;
-                break;
-            case 3:
-                var cs = this.getTypeChoice(value);
-                form.querySelectorAll('*[match=specific] input').forEach((element, index) => {
-                    if (cs.includes((index + decrement).toString())) {
-                        element.checked = true;
-                    }
-                });
-                break;
+            case 1: {
+            const f = freq;
+            const decrementFreq = 1 - decrement;
+            form.querySelector('*[match=every]').selectedIndex = parseInt(f.every) + decrementFreq;
+            form.querySelector('*[match=start]').selectedIndex = parseInt(f.start) + decrementFreq;
+            break;
+            }
+            case 2: {
+            const r = range;
+            form.querySelector('*[match=rangeMin]').selectedIndex = parseInt(r.min) - decrement;
+            form.querySelector('*[match=rangeMax]').selectedIndex = parseInt(r.max) - decrement;
+            break;
+            }
+            case 3: {
+            const cs = this.getTypeChoice(value);
+            form.querySelectorAll('*[match=specific] input').forEach((element, index) => {
+                if (cs.includes((index + decrement).toString())) element.checked = true;
+            });
+            break;
+            }
         }
     }
+
     validateLongitude(e) {
         var values = e.target.value.trim().split(' ');
         if (values.length > 5) {
