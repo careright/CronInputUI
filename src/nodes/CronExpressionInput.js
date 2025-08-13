@@ -291,7 +291,7 @@ export class CronExpressionInput extends CronComponent {
         if (Object.keys(cronstrue.default.locales).includes(inputLangInternal.code)) {
             cronstrueLang = inputLangInternal.code;
         }
-        return cronstrue.toString(value, { locale: cronstrueLang });
+        return cronstrue.toString(value, { locale: cronstrueLang, use24HourTimeFormat: true });
     }
     modalToggle() {
         this.getElement('.modal').classList.toggle('show');

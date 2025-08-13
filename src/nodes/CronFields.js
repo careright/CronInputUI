@@ -27,6 +27,28 @@ export class CronFields extends CronComponent {
         this.value = '*';
         this.Create(this, template);
         this.Mount();
+
+        this.querySelectorAll(".propagationClass.form-check-input").forEach((input) => {
+            input.addEventListener("change", (event) => {
+                this.querySelectorAll(".propagationClass").forEach((el) => {
+                    el.disabled = true;
+                });
+                this.querySelectorAll(".propagationClass.form-check-input").forEach((el) => {
+                    el.disabled = false;
+                });
+
+                const selectedInput = this.querySelector("input[name='choice']:checked");
+                const selectedValue = selectedInput ? selectedInput.value : null;
+                console.log("Selected value:", selectedValue);
+
+                const parentPanel = event.target.closest(".panel");
+                if (parentPanel) {
+                parentPanel.querySelectorAll(".propagationClass").forEach((el) => {
+                    el.disabled = false;
+                });
+                }
+            });
+        });
     }
     Mount() {
         this.addSelectOptions('every');
